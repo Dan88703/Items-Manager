@@ -2,7 +2,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +19,7 @@ public class ItemManagerImplTest {
     }
 
     @Test
-    void testAddItem() {
+    void testAddItem() throws SQLException, FileNotFoundException, ParseException {
         manager.addItem("Mleko", 2, "spożywcze");
 
         assertEquals(1, manager.getAllItems().size());
@@ -24,7 +27,7 @@ public class ItemManagerImplTest {
     }
 
     @Test
-    void testRemoveItem() {
+    void testRemoveItem() throws SQLException, FileNotFoundException, ParseException {
         manager.addItem("Mleko", 2, "spożywcze");
         manager.addItem("Chleb", 1, "spożywcze");
 
@@ -35,7 +38,7 @@ public class ItemManagerImplTest {
     }
 
     @Test
-    void testFindItem() {
+    void testFindItem() throws SQLException, FileNotFoundException, ParseException {
         manager.addItem("Mleko", 2, "spożywcze");
 
         Product found = manager.findItem("Mleko");
@@ -45,7 +48,7 @@ public class ItemManagerImplTest {
     }
 
     @Test
-    void testMarkAsPurchased() {
+    void testMarkAsPurchased() throws SQLException, FileNotFoundException, ParseException {
         manager.addItem("Mleko", 2, "spożywcze");
 
         manager.markAsPurchased(1);
@@ -54,7 +57,7 @@ public class ItemManagerImplTest {
     }
 
     @Test
-    void testShowList() {
+    void testShowList() throws SQLException, FileNotFoundException, ParseException {
         manager.addItem("Mleko", 2, "spożywcze");
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
